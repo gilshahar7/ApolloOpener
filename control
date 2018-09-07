@@ -1,7 +1,7 @@
 Package: com.gilshahar7.apolloopener
 Name: ApolloOpener
 Depends: mobilesubstrate, ws.hbang.libopener (>= 3.1.2)
-Version: 1.0
+Version: 1.1
 Architecture: iphoneos-arm
 Description: Open "reddit.com" links in the Apollo app using libOpener.
 Maintainer: gilshahar7
