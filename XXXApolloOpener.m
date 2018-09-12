@@ -47,6 +47,18 @@
 }
 
 - (NSURL *)createApolloURLFromURL:(NSURL *)url {
+    // If URL is /r/:subreddit/wiki or (/about), let the Official Reddit app handle
+    if (url.pathComponents.count >= 4 &&
+            ([url.pathComponents[3] isEqualToString:@"wiki"] ||
+            [url.pathComponents[3] isEqualToString:@"about"])) {
+        return nil;
+    }
+
+    // if URL is /live/, let the Official Reddit app handle
+    if (url.pathComponents.count >= 3 && [url.pathComponents[1] isEqualToString:@"live"]) {
+        return nil;
+    }
+
     if ([url.path isEqualToString:@"/"] || [url.path isEqualToString:@""]) {
         return [NSURL URLWithString:@"apollo://"];
     } else {
@@ -57,7 +69,6 @@
 /*
 Thanks to:
 - https://stackoverflow.com/questions/8756683/best-way-to-parse-url-string-to-get-values-for-keys
-- https://stackoverflow.com/questions/8756683/best-way-to-parse-url-string-to-get-values-for-keys/26406426#26406426
 */
 - (NSString *)valueForKey:(NSString *)key fromQueryItems:(NSArray *)queryItems {
 
